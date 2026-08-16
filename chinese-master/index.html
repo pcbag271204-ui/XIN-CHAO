@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chinese Master - Luyện tập Pinyin & Chữ Hán</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-card">
+    <div class="header">
+      <div class="logo">🐼</div>
+      <h1>Chinese Master</h1>
+      <p class="subtitle">Luyện tập Pinyin & Chữ Hán</p>
+    </div>
+
+    <!-- Chọn bài học -->
+    <div class="selector-box">
+      <label for="lessonSelect">Chọn bài học:</label>
+      <select id="lessonSelect">
+        <option value="all">Tất cả các bài</option>
+        <option value="1">Bài 1</option>
+        <option value="2">Bài 2</option>
+        <option value="3">Bài 3</option>
+        <option value="4">Bài 4</option>
+      </select>
+    </div>
+
+    <!-- Thanh tiến độ -->
+    <div class="progress-box">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">Đã học 0 / 0 từ</div>
+    </div>
+
+    <!-- Khung hiển thị chữ Hán -->
+    <div class="hanzi-card" id="hanziCard">
+      <span id="hanziText">你好</span>
+    </div>
+
+    <!-- Ô nhập liệu & Nút bấm -->
+    <div class="input-group">
+      <input type="text" id="userInput" placeholder="Nhập Pinyin hoặc Chữ Hán..." autocomplete="off" />
+    </div>
+
+    <div class="action-buttons">
+      <button id="checkBtn" class="btn btn-primary">✔ KIỂM TRA</button>
+      <button id="skipBtn" class="btn btn-secondary">Bỏ qua ➔</button>
+    </div>
+
+    <!-- Phản hồi kết quả & Gợi ý -->
+    <div class="feedback-area">
+      <div id="feedbackText" class="feedback"></div>
+      <div id="hintText" class="hint"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span>Settings</span>
+      <span>Help</span>
+      <span>Stats</span>
+      <span>About</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
