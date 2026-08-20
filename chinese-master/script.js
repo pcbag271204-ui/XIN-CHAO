@@ -57,7 +57,7 @@ const fullVocabulary = [
         {lesson: 3, hanzi: "高兴", pinyin: "gāoxìng", meaning: "vui, vui mừng"},
         {lesson: 3, hanzi: "贵姓", pinyin: "guìxìng", meaning: "họ gì? (cách hỏi lịch sự)"},
         {lesson: 3, hanzi: "很", pinyin: "hěn", meaning: "rất"},
-        {lesson: 3, hanzi: "性", pinyin: "xìng", meaning: "họ (thường dùng trong 姓)"},
+        {lesson: 3, hanzi: "姓", pinyin: "xìng", meaning: "họ (thường dùng trong 姓)"},
         {lesson: 3, hanzi: "呢", pinyin: "ne", meaning: "trợ từ, nhỉ/thế còn..."},
         {lesson: 3, hanzi: "想", pinyin: "xiǎng", meaning: "muốn"},
         {lesson: 3, hanzi: "玩", pinyin: "wán", meaning: "chơi"},
