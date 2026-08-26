@@ -95,7 +95,7 @@ const fullVocabulary = [
         { lesson: 4, hanzi: "昨年", pinyin: "zuó nián", meaning: "năm ngoái" },
         { lesson: 4, hanzi: "明年", pinyin: "míng nián", meaning: "năm sau" },
         { lesson: 4, hanzi: "月", pinyin: "yuè", meaning: "tháng" },
-        { lesson: 4, hanzi: "号", pinyin: "hào", meaning: "ngày (trong ngày tháng)" }
+        { lesson: 4, hanzi: "号", pinyin: "hào", meaning: "ngày (trong ngày tháng)" },
         { lesson: 4, hanzi: "日", pinyin: "rì", meaning: "ngày" },
         { lesson: 4, hanzi: "的", pinyin: "de", meaning: "của" },
         { lesson: 4, hanzi: "生日", pinyin: "shēng rì", meaning: "sinh nhật" },
