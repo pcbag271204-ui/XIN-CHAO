@@ -111,6 +111,27 @@ const fullVocabulary = [
         { lesson: 4, hanzi: "谁", pinyin: "shéi", meaning: "ai" },
         { lesson: 4, hanzi: "设", pinyin: "shè", meaning: "đặt / thiết lập" },
         { lesson: 4, hanzi: "那", pinyin: "nà", meaning: "kia / đó" },
+  // Bài 5
+        { lesson: 5, hanzi: "在", pinyin: "zài", meaning: "ở, tại" },
+        { lesson: 5, hanzi: "工作", pinyin: "gōngzuò", meaning: "làm việc, công việc" },
+        { lesson: 5, hanzi: "做", pinyin: "zuò", meaning: "làm" },
+        { lesson: 5, hanzi: "这儿", pinyin: "zhèr", meaning: "chỗ này, ở đây" },
+        { lesson: 5, hanzi: "这里", pinyin: "zhèlǐ", meaning: "nơi này, ở đây" },
+        { lesson: 5, hanzi: "哪儿", pinyin: "nǎr", meaning: "ở đâu" },
+        { lesson: 5, hanzi: "那里", pinyin: "nàlǐ", meaning: "ở đó" },
+        { lesson: 5, hanzi: "哪里", pinyin: "nǎlǐ", meaning: "ở đâu" },
+        { lesson: 5, hanzi: "办公室", pinyin: "bàngōngshì", meaning: "văn phòng" },
+        { lesson: 5, hanzi: "楼", pinyin: "lóu", meaning: "tầng, tòa nhà" },
+        { lesson: 5, hanzi: "办公楼", pinyin: "bàngōnglóu", meaning: "tòa nhà văn phòng" },
+        { lesson: 5, hanzi: "生产楼", pinyin: "shēngchǎnlóu", meaning: "tòa nhà sản xuất" },
+        { lesson: 5, hanzi: "宿舍楼", pinyin: "sùshèlóu", meaning: "tòa nhà ký túc xá" },
+        { lesson: 5, hanzi: "宿舍", pinyin: "sùshè", meaning: "ký túc xá" },
+        { lesson: 5, hanzi: "车棚", pinyin: "chēpéng", meaning: "nhà để xe" },
+        { lesson: 5, hanzi: "车", pinyin: "chē", meaning: "xe" },
+        { lesson: 5, hanzi: "保安室", pinyin: "bǎo'ānshì", meaning: "phòng bảo vệ" },
+        { lesson: 5, hanzi: "食堂", pinyin: "shítáng", meaning: "nhà ăn, căng tin" },
+        { lesson: 5, hanzi: "饭堂", pinyin: "fàntáng", meaning: "nhà ăn, căng tin" },
+        { lesson: 5, hanzi: "卫生间", pinyin: "wèishēngjiān", meaning: "nhà vệ sinh" },
 ];
 
 let vocabulary = [];
