@@ -132,6 +132,22 @@ const fullVocabulary = [
         { lesson: 5, hanzi: "食堂", pinyin: "shítáng", meaning: "nhà ăn, căng tin" },
         { lesson: 5, hanzi: "饭堂", pinyin: "fàntáng", meaning: "nhà ăn, căng tin" },
         { lesson: 5, hanzi: "卫生间", pinyin: "wèishēngjiān", meaning: "nhà vệ sinh" },
+        { lesson: 5, hanzi: "厂房", pinyin: "chǎngfáng", meaning: "nhà xưởng" },
+        { lesson: 5, hanzi: "工厂", pinyin: "gōngchǎng", meaning: "nhà máy, công xưởng" },
+        { lesson: 5, hanzi: "车间", pinyin: "chējiān", meaning: "xưởng, phân xưởng" },
+        { lesson: 5, hanzi: "仓库", pinyin: "cāngkù", meaning: "kho" },
+        { lesson: 5, hanzi: "左边", pinyin: "zuǒbian", meaning: "bên trái" },
+        { lesson: 5, hanzi: "右边", pinyin: "yòubian", meaning: "bên phải" },
+        { lesson: 5, hanzi: "前面", pinyin: "qiánmiàn", meaning: "phía trước" },
+        { lesson: 5, hanzi: "后面", pinyin: "hòumiàn", meaning: "phía sau" },
+        { lesson: 5, hanzi: "上面", pinyin: "shàngmiàn", meaning: "phía trên" },
+        { lesson: 5, hanzi: "下面", pinyin: "xiàmiàn", meaning: "phía dưới" },
+        { lesson: 5, hanzi: "里面", pinyin: "lǐmiàn", meaning: "bên trong" },
+        { lesson: 5, hanzi: "外面", pinyin: "wàimiàn", meaning: "bên ngoài" },
+        { lesson: 5, hanzi: "旁边", pinyin: "pángbiān", meaning: "bên cạnh" },
+        { lesson: 5, hanzi: "对面", pinyin: "duìmiàn", meaning: "đối diện" },
+        { lesson: 5, hanzi: "中间", pinyin: "zhōngjiān", meaning: "ở giữa" },
+        { lesson: 5, hanzi: "附近", pinyin: "fùjìn", meaning: "gần, khu vực lân cận" },
 ];
 
 let vocabulary = [];
