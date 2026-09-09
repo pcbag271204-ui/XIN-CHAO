@@ -148,6 +148,19 @@ const fullVocabulary = [
         { lesson: 5, hanzi: "对面", pinyin: "duìmiàn", meaning: "đối diện" },
         { lesson: 5, hanzi: "中间", pinyin: "zhōngjiān", meaning: "ở giữa" },
         { lesson: 5, hanzi: "附近", pinyin: "fùjìn", meaning: "gần, khu vực lân cận" },
+        { lesson: 5, hanzi: "东边", pinyin: "dōngbiān", meaning: "phía đông" },
+        { lesson: 5, hanzi: "北边", pinyin: "běibiān", meaning: "phía bắc" },
+        { lesson: 5, hanzi: "南边", pinyin: "nánbiān", meaning: "phía nam" },
+        { lesson: 5, hanzi: "西边", pinyin: "xībiān", meaning: "phía tây" },
+        { lesson: 5, hanzi: "工业区", pinyin: "gōngyèqū", meaning: "khu công nghiệp" },
+        { lesson: 5, hanzi: "大学", pinyin: "dàxué", meaning: "đại học" },
+        { lesson: 5, hanzi: "中专", pinyin: "zhōngzhuān", meaning: "trung cấp chuyên nghiệp" },
+        { lesson: 5, hanzi: "高中", pinyin: "gāozhōng", meaning: "trung học phổ thông" },
+        { lesson: 5, hanzi: "初中", pinyin: "chūzhōng", meaning: "trung học cơ sở" },
+        { lesson: 5, hanzi: "小学", pinyin: "xiǎoxué", meaning: "tiểu học" },
+        { lesson: 5, hanzi: "专业", pinyin: "zhuānyè", meaning: "chuyên ngành" },
+        { lesson: 5, hanzi: "最近", pinyin: "zuìjìn", meaning: "gần đây, dạo này" },
+        { lesson: 5, hanzi: "忙", pinyin: "máng", meaning: "bận" },
 ];
 
 let vocabulary = [];
