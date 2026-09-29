@@ -194,7 +194,7 @@ const fullVocabulary = [
          { lesson: 6, hanzi: "用", pinyin: "yòng", meaning: "dùng; sử dụng" },
          { lesson: 6, hanzi: "还", pinyin: "hái", meaning: "còn; vẫn; cũng" },
 
-// Bài 7
+     //Bài 7
          { lesson: 7, hanzi: "找", pinyin: "zhǎo", meaning: "tìm; trả lại tiền thừa" },
          { lesson: 7, hanzi: "点", pinyin: "diǎn", meaning: "giờ; điểm" },
          { lesson: 7, hanzi: "分", pinyin: "fēn", meaning: "phút; phần; phân" },
