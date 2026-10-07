@@ -228,6 +228,22 @@ const fullVocabulary = [
          { lesson: 7, hanzi: "换班", pinyin: "huànbān", meaning: "đổi ca; thay ca" },
          { lesson: 7, hanzi: "起床", pinyin: "qǐchuáng", meaning: "thức dậy; rời khỏi giường" },
          { lesson: 7, hanzi: "小时", pinyin: "xiǎoshí", meaning: "giờ; tiếng đồng hồ" },
+   
+    //H2-1
+         { lesson: "H2-1", hanzi: "在", pinyin: "zài", meaning: "ở, tại; đang" },
+         { lesson: "H2-1", hanzi: "正在", pinyin: "zhèngzài", meaning: "đang" },
+         { lesson: "H2-1", hanzi: "正", pinyin: "zhèng", meaning: "đang; đúng; chính" },
+         { lesson: "H2-1", hanzi: "这么", pinyin: "zhème", meaning: "như thế này; như vậy" },
+         { lesson: "H2-1", hanzi: "晚", pinyin: "wǎn", meaning: "muộn; tối" },
+         { lesson: "H2-1", hanzi: "早", pinyin: "zǎo", meaning: "sớm; buổi sáng" },
+         { lesson: "H2-1", hanzi: "有点", pinyin: "yǒudiǎn", meaning: "hơi; có chút" },
+         { lesson: "H2-1", hanzi: "一点", pinyin: "yìdiǎn", meaning: "một chút; một ít" },
+         { lesson: "H2-1", hanzi: "处理", pinyin: "chǔlǐ", meaning: "xử lý" },
+         { lesson: "H2-1", hanzi: "应该", pinyin: "yīnggāi", meaning: "nên; cần phải; có lẽ" },
+         { lesson: "H2-1", hanzi: "空儿", pinyin: "kòngr", meaning: "thời gian rảnh; lúc rảnh" },
+         { lesson: "H2-1", hanzi: "好像", pinyin: "hǎoxiàng", meaning: "hình như; có vẻ như" },
+         { lesson: "H2-1", hanzi: "像", pinyin: "xiàng", meaning: "giống; giống như" },
+         { lesson: "H2-1", hanzi: "听说", pinyin: "tīngshuō", meaning: "nghe nói" },
        
 ];
 
