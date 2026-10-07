@@ -230,7 +230,7 @@ const fullVocabulary = [
          { lesson: 7, hanzi: "小时", pinyin: "xiǎoshí", meaning: "giờ; tiếng đồng hồ" },
    
     //Bài H2-1
-         { lesson: "H2-1", hanzi: "在", pinyin: "zài", meaning: "ở, tại; đang" },
+         { lesson: H2-1, hanzi: "在", pinyin: "zài", meaning: "ở, tại; đang" },
          { lesson: "H2-1", hanzi: "正在", pinyin: "zhèngzài", meaning: "đang" },
          { lesson: "H2-1", hanzi: "正", pinyin: "zhèng", meaning: "đang; đúng; chính" },
          { lesson: "H2-1", hanzi: "这么", pinyin: "zhème", meaning: "như thế này; như vậy" },
