@@ -229,7 +229,7 @@ const fullVocabulary = [
          { lesson: 7, hanzi: "起床", pinyin: "qǐchuáng", meaning: "thức dậy; rời khỏi giường" },
          { lesson: 7, hanzi: "小时", pinyin: "xiǎoshí", meaning: "giờ; tiếng đồng hồ" },
    
-    //H2-1
+    //Bài H2-1
          { lesson: "H2-1", hanzi: "在", pinyin: "zài", meaning: "ở, tại; đang" },
          { lesson: "H2-1", hanzi: "正在", pinyin: "zhèngzài", meaning: "đang" },
          { lesson: "H2-1", hanzi: "正", pinyin: "zhèng", meaning: "đang; đúng; chính" },
