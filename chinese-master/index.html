@@ -1,138 +1,105 @@
-```html
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Chinese Master - Luyện tập Pinyin & Chữ Hán</title>
-
+    <title>Chinese Master</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-    <div class="app-card">
+    <main class="app">
+        <header class="header">
+            <div class="logo">中</div>
+            <div>
+                <h1>Chinese Master</h1>
+                <p>Học tiếng Trung mỗi ngày</p>
+            </div>
+        </header>
 
-        <!-- Tiêu đề -->
-        <div class="header">
-            <div class="logo">🐼</div>
-            <h1>Chinese Master</h1>
-            <p class="subtitle">Luyện tập Pinyin & Chữ Hán</p>
-        </div>
-
-        <!-- Chọn bài học -->
-        <div class="selector-box">
-            <label for="lessonSelect">Chọn bài học:</label>
-
-            <select id="lessonSelect">
-                <option value="all">Tất cả các bài</option>
-                <option value="1">Bài 1</option>
-                <option value="2">Bài 2</option>
-                <option value="3">Bài 3</option>
-                <option value="4">Bài 4</option>
-                <option value="5">Bài 5</option>
-                <option value="6">Bài 6</option>
-                <option value="7">Bài 7</option>
-                <option value="H2-1">Bài H2-1</option>
-                <option value="9">Bài 9</option>
-                <option value="10">Bài 10</option>
-                <option value="11">Bài 11</option>
-                <option value="12">Bài 12</option>
-                <option value="13">Bài 13</option>
-                <option value="14">Bài 14</option>
-                <option value="15">Bài 15</option>
-            </select>
-        </div>
-
-        <!-- Chọn kiểu luyện tập -->
-        <div class="selector-box">
-            <label for="practiceMode">Kiểu luyện tập:</label>
-
-            <select id="practiceMode">
-                <option value="hanzi">Chữ Hán → nhập Pinyin</option>
-                <option value="meaning">Nghĩa tiếng Việt → nhập chữ Hán</option>
-                <option value="pinyin">Pinyin → nhập nghĩa tiếng Việt</option>
-                <option value="random">Ngẫu nhiên cả 3 kiểu</option>
-            </select>
-        </div>
-
-        <!-- Tiến độ -->
-        <div class="progress-box">
-            <div class="progress-bar-bg">
-                <div
-                    class="progress-bar-fill"
-                    id="progressFill"
-                    style="width: 0%;">
-                </div>
+        <section class="settings card">
+            <div class="field">
+                <label for="lessonSelect">Chọn bài học</label>
+                <select id="lessonSelect">
+                    <option value="all">Tất cả từ vựng</option>
+                    <option value="1">Bài 1</option>
+                    <option value="2">Bài 2</option>
+                    <option value="3">Bài 3</option>
+                    <option value="4">Bài 4</option>
+                    <option value="5">Bài 5</option>
+                    <option value="6">Bài 6</option>
+                    <option value="7">Bài 7</option>
+                    <option value="H2-1">H2-1</option>
+                </select>
             </div>
 
-            <div class="progress-text" id="progressText">
-                0 / 0 từ
+            <div class="field">
+                <label for="practiceMode">Chế độ luyện tập</label>
+                <select id="practiceMode">
+                    <option value="random">Ngẫu nhiên</option>
+                    <option value="hanzi">Chữ Hán → Pinyin</option>
+                    <option value="meaning">Nghĩa → Chữ Hán</option>
+                    <option value="pinyin">Pinyin → Nghĩa</option>
+                </select>
             </div>
-        </div>
+        </section>
 
-        <!-- Câu hỏi -->
-        <div class="hanzi-card" id="hanziCard">
-            <span id="hanziText">正在加载...</span>
-        </div>
+        <section class="progress-section">
+            <div class="progress-info">
+                <span>Tiến độ</span>
+                <span id="progressText">0 / 0 từ</span>
+            </div>
+            <div class="progress-track">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <p id="totalText" class="total-text">Trả lời đúng: 0 / 0 từ</p>
+        </section>
 
-        <!-- Hướng dẫn trả lời -->
-        <div
-            id="questionType"
-            style="text-align: center; margin: 12px 0; color: #94a3b8;">
-            Nhập câu trả lời của bạn
-        </div>
+        <section class="question-card card">
+            <div class="question-top">
+                <span class="question-label">CÂU HỎI</span>
+                <span class="status-dot"></span>
+            </div>
 
-        <!-- Ô nhập đáp án -->
-        <form id="answerForm">
-            <div class="input-group">
+            <p id="questionType" class="question-type">
+                Nhìn câu hỏi và nhập đáp án
+            </p>
+
+            <div id="hanziText" class="question-word">你好</div>
+
+            <p id="hintText" class="hint"></p>
+
+            <form id="answerForm">
+                <label for="userInput" class="input-label">
+                    Câu trả lời của bạn
+                </label>
+
                 <input
-                    type="text"
                     id="userInput"
-                    placeholder="Nhập câu trả lời..."
+                    type="text"
+                    placeholder="Nhập đáp án..."
                     autocomplete="off"
                     autocapitalize="off"
                     spellcheck="false"
-                    required>
-            </div>
+                >
 
-            <!-- Nút chức năng -->
-            <div class="action-buttons">
-                <button
-                    type="submit"
-                    id="checkBtn"
-                    class="btn btn-primary">
-                    ✔ KIỂM TRA
-                </button>
+                <p id="feedbackText" class="feedback" aria-live="polite"></p>
 
-                <button
-                    type="button"
-                    id="skipBtn"
-                    class="btn btn-secondary">
-                    Bỏ qua ➔
-                </button>
-            </div>
-        </form>
+                <div class="buttons">
+                    <button id="checkBtn" type="submit" class="btn primary">
+                        Kiểm tra
+                    </button>
+                    <button id="skipBtn" type="button" class="btn secondary">
+                        Bỏ qua
+                    </button>
+                </div>
+            </form>
+        </section>
 
-        <!-- Kết quả và đáp án -->
-        <div class="feedback-area">
-            <div id="feedbackText" class="feedback"></div>
-            <div id="hintText" class="hint"></div>
-        </div>
-
-        <!-- Chân trang -->
-        <div class="footer">
-            <span>Chinese Master</span>
-            <span id="totalText">Trả lời đúng: 0 / 0 từ</span>
-        </div>
-
-    </div>
-
-    <!-- Quan trọng: tải dữ liệu trước -->
-    <script src="vocabulary.js"></script>
-
-    <!-- Sau đó mới tải logic luyện tập -->
-    <script src="script.js"></script>
+        <footer>
+            <p>Chinese Master · Luyện từ vựng tiếng Trung</p>
+        </footer>
+    </main>
 </body>
 </html>
-```
