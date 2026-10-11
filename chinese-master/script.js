@@ -1,20 +1,5 @@
 
-/*
-========================================
-CHINESE MASTER - SCRIPT.JS
-========================================
-
-Từ vựng được lưu trực tiếp trong file này.
-
-Format:
-{ lesson: 1, hanzi: "你", pinyin: "nǐ", meaning: "bạn" }
-
-Các chế độ:
-- random: Ngẫu nhiên cả 3 dạng
-- hanzi: Chữ Hán -> nhập Pinyin
-- meaning: Nghĩa tiếng Việt -> nhập chữ Hán
-- pinyin: Pinyin -> nhập nghĩa tiếng Việt
-*/
+"use strict";
 
 // ========================================
 // 1. DỮ LIỆU TỪ VỰNG
@@ -41,15 +26,21 @@ const fullVocabulary = [
     { lesson: 1, hanzi: "司机", pinyin: "sījī", meaning: "tài xế" },
     { lesson: 1, hanzi: "吃饭", pinyin: "chīfàn", meaning: "ăn cơm" },
     { lesson: 1, hanzi: "时间", pinyin: "shíjiān", meaning: "thời gian" },
-    { lesson: 1, hanzi: "自己", pinyin: "zìjǐ", meaning: "bản thân" }
+    { lesson: 1, hanzi: "自己", pinyin: "zìjǐ", meaning: "bản thân" },
 
-    // Thêm các từ Bài 2, Bài 3... của bạn ở đây.
-    // Giữ nguyên format:
+    // Bài 2 - thêm từ vựng của bạn tại đây
     // { lesson: 2, hanzi: "是", pinyin: "shì", meaning: "là" },
+
+    // Bài 3 - thêm từ vựng của bạn tại đây
+    // { lesson: 3, hanzi: "来", pinyin: "lái", meaning: "đến" },
+
+    // Bài 4, 5, 6, 7 và H2-1:
+    // Giữ cùng format, ví dụ:
+    // { lesson: "H2-1", hanzi: "正在", pinyin: "zhèngzài", meaning: "đang" },
 ];
 
 // ========================================
-// 2. KHAI BÁO CÁC BIẾN
+// 2. BIẾN ỨNG DỤNG
 // ========================================
 
 let vocabulary = [];
@@ -76,10 +67,9 @@ const answerForm = $("answerForm");
 const totalText = $("totalText");
 
 // ========================================
-// 3. CHUẨN HÓA CÂU TRẢ LỜI
+// 3. CHUẨN HÓA ĐÁP ÁN
 // ========================================
 
-// Bỏ dấu thanh Pinyin để nǐ hǎo = nihao = ni3hao3
 function normalizePinyin(text) {
     return String(text || "")
         .toLowerCase()
@@ -91,7 +81,6 @@ function normalizePinyin(text) {
         .replace(/[^a-z]/g, "");
 }
 
-// Chuẩn hóa văn bản tiếng Việt/chữ Hán
 function normalizeText(text) {
     return String(text || "")
         .trim()
@@ -101,8 +90,6 @@ function normalizeText(text) {
         .replace(/[.,!?;:，。！？；：、…]/g, "");
 }
 
-// Tách các nghĩa tương đương.
-// Ví dụ: "bạn, anh, chị" chấp nhận cả "bạn" và "anh".
 function getMeaningOptions(meaning) {
     return String(meaning || "")
         .split(/[,，;；/、]/)
@@ -111,7 +98,7 @@ function getMeaningOptions(meaning) {
 }
 
 // ========================================
-// 4. XÁO TRỘN TỪ VỰNG
+// 4. XÁO TRỘN
 // ========================================
 
 function shuffle(array) {
@@ -125,10 +112,6 @@ function shuffle(array) {
     return result;
 }
 
-// ========================================
-// 5. CHỌN KIỂU CÂU HỎI
-// ========================================
-
 function chooseMode() {
     const selected = practiceMode.value;
 
@@ -137,12 +120,11 @@ function chooseMode() {
     }
 
     const modes = ["hanzi", "meaning", "pinyin"];
-
     return modes[Math.floor(Math.random() * modes.length)];
 }
 
 // ========================================
-// 6. HIỂN THỊ PHẢN HỒI
+// 5. HIỂN THỊ THÔNG BÁO
 // ========================================
 
 function setFeedback(message, type = "") {
@@ -155,24 +137,6 @@ function setHint(message, type = "") {
     hintText.className = "hint" + (type ? " " + type : "");
 }
 
-// ========================================
-// 7. CẬP NHẬT TIẾN ĐỘ
-// ========================================
-
-function updateProgress() {
-    const total = vocabulary.length;
-    const completed = Math.min(currentIndex, total);
-    const percent = total > 0 ? (completed / total) * 100 : 0;
-
-    progressFill.style.width = percent + "%";
-    progressText.textContent = `${completed} / ${total} từ`;
-    totalText.textContent = `Trả lời đúng: ${correctCount} / ${total} từ`;
-}
-
-// ========================================
-// 8. KHÓA / MỞ ĐIỀU KHIỂN
-// ========================================
-
 function setControlsDisabled(disabled) {
     userInput.disabled = disabled;
     checkBtn.disabled = disabled;
@@ -180,7 +144,21 @@ function setControlsDisabled(disabled) {
 }
 
 // ========================================
-// 9. CHỌN BÀI HỌC
+// 6. CẬP NHẬT TIẾN ĐỘ
+// ========================================
+
+function updateProgress() {
+    const total = vocabulary.length;
+    const completed = Math.min(currentIndex, total);
+    const percent = total ? completed / total * 100 : 0;
+
+    progressFill.style.width = `${percent}%`;
+    progressText.textContent = `${completed} / ${total} từ`;
+    totalText.textContent = `Trả lời đúng: ${correctCount} / ${total} từ`;
+}
+
+// ========================================
+// 7. CHỌN BÀI HỌC
 // ========================================
 
 function selectLesson() {
@@ -191,15 +169,10 @@ function selectLesson() {
 
     const selectedLesson = lessonSelect.value;
 
-    // Sử dụng fullVocabulary, không sử dụng wordsData.
     vocabulary = fullVocabulary.filter(word => {
-        const hasData =
-            word.hanzi &&
-            word.pinyin &&
-            word.meaning &&
-            word.lesson !== undefined;
-
-        if (!hasData) return false;
+        if (!word.hanzi || !word.pinyin || !word.meaning) {
+            return false;
+        }
 
         return selectedLesson === "all" ||
             String(word.lesson) === String(selectedLesson);
@@ -215,7 +188,7 @@ function selectLesson() {
 }
 
 // ========================================
-// 10. HIỂN THỊ CÂU HỎI
+// 8. HIỂN THỊ CÂU HỎI
 // ========================================
 
 function loadNextWord() {
@@ -227,34 +200,18 @@ function loadNextWord() {
     isAnswered = false;
 
     userInput.value = "";
-    userInput.disabled = false;
-    checkBtn.disabled = false;
-    skipBtn.disabled = false;
+    setFeedback("");
+    setHint("");
+    setControlsDisabled(false);
 
     checkBtn.textContent = "Kiểm tra";
 
-    setFeedback("");
-    setHint("");
-
-    // Không có từ vựng
-    if (fullVocabulary.length === 0) {
-        hanziText.textContent = "!";
-        questionType.textContent = "Chưa có từ vựng";
-
-        setFeedback("Hãy thêm từ vào mảng fullVocabulary.", "wrong");
-
-        setControlsDisabled(true);
-        updateProgress();
-        return;
-    }
-
-    // Bài học không có từ
     if (vocabulary.length === 0) {
         hanziText.textContent = "暂无词汇";
-        questionType.textContent = "Không có từ trong bài này";
+        questionType.textContent = "Chưa có từ vựng";
 
         setFeedback(
-            "Kiểm tra giá trị lesson trong dữ liệu và index.html.",
+            "Bài này chưa có dữ liệu. Hãy thêm từ vào fullVocabulary.",
             "wrong"
         );
 
@@ -263,7 +220,6 @@ function loadNextWord() {
         return;
     }
 
-    // Đã hoàn thành
     if (currentIndex >= vocabulary.length) {
         hanziText.textContent = "🎉";
         questionType.textContent = "HOÀN THÀNH";
@@ -273,15 +229,13 @@ function loadNextWord() {
             "correct"
         );
 
-        setHint("Chọn bài học hoặc chế độ khác để luyện tập tiếp.");
-
+        setHint("Chọn bài học hoặc chế độ khác để luyện tiếp.");
         setControlsDisabled(true);
         updateProgress();
         return;
     }
 
     const word = vocabulary[currentIndex];
-
     currentMode = chooseMode();
 
     if (currentMode === "hanzi") {
@@ -303,27 +257,21 @@ function loadNextWord() {
 }
 
 // ========================================
-// 11. LẤY ĐÁP ÁN ĐÚNG
+// 9. ĐÁP ÁN ĐÚNG
 // ========================================
 
 function getCorrectAnswer(word) {
-    if (currentMode === "hanzi") {
-        return word.pinyin;
-    }
-
-    if (currentMode === "meaning") {
-        return word.hanzi;
-    }
-
+    if (currentMode === "hanzi") return word.pinyin;
+    if (currentMode === "meaning") return word.hanzi;
     return word.meaning;
 }
 
 // ========================================
-// 12. KIỂM TRA ĐÁP ÁN
+// 10. KIỂM TRA ĐÁP ÁN
 // ========================================
 
 function checkAnswer(event) {
-    if (event) event.preventDefault();
+    event.preventDefault();
 
     if (isAnswered || currentIndex >= vocabulary.length) {
         return;
@@ -340,15 +288,11 @@ function checkAnswer(event) {
     let correct = false;
 
     if (currentMode === "hanzi") {
-        correct =
-            normalizePinyin(answer) === normalizePinyin(word.pinyin);
+        correct = normalizePinyin(answer) === normalizePinyin(word.pinyin);
     } else if (currentMode === "meaning") {
-        correct =
-            normalizeText(answer) === normalizeText(word.hanzi);
-    } else if (currentMode === "pinyin") {
-        const acceptedMeanings = getMeaningOptions(word.meaning);
-
-        correct = acceptedMeanings.includes(normalizeText(answer));
+        correct = normalizeText(answer) === normalizeText(word.hanzi);
+    } else {
+        correct = getMeaningOptions(word.meaning).includes(normalizeText(answer));
     }
 
     if (correct) {
@@ -357,9 +301,8 @@ function checkAnswer(event) {
         currentIndex++;
 
         setFeedback("✔ Chính xác! Giỏi lắm!", "correct");
-
         setHint(
-            `Chữ Hán: ${word.hanzi} | Pinyin: ${word.pinyin} | Nghĩa: ${word.meaning}`,
+            `${word.hanzi} | ${word.pinyin} | ${word.meaning}`,
             "correct"
         );
 
@@ -369,15 +312,13 @@ function checkAnswer(event) {
         nextTimer = setTimeout(loadNextWord, 1000);
     } else {
         setFeedback("✘ Chưa đúng, thử lại nhé!", "wrong");
-
-        setHint("Hãy kiểm tra lại đáp án rồi thử lần nữa.", "wrong");
-
+        setHint("Bạn có thể nhập lại đáp án.", "wrong");
         userInput.select();
     }
 }
 
 // ========================================
-// 13. BỎ QUA TỪ HIỆN TẠI
+// 11. BỎ QUA
 // ========================================
 
 function skipWord() {
@@ -391,39 +332,38 @@ function skipWord() {
     currentIndex++;
 
     setFeedback("Đã bỏ qua từ này.", "wrong");
-
-    setHint(
-        `Đáp án: ${word.hanzi} | ${word.pinyin} | ${word.meaning}`
-    );
+    setHint(`${word.hanzi} | ${word.pinyin} | ${word.meaning}`);
 
     setControlsDisabled(true);
     updateProgress();
 
-    nextTimer = setTimeout(loadNextWord, 1200);
+    nextTimer = setTimeout(loadNextWord, 1000);
 }
 
 // ========================================
-// 14. KHỞI ĐỘNG ỨNG DỤNG
+// 12. KHỞI ĐỘNG
 // ========================================
 
 function initChineseMaster() {
-    if (
-        !lessonSelect ||
-        !practiceMode ||
-        !progressFill ||
-        !progressText ||
-        !hanziText ||
-        !questionType ||
-        !userInput ||
-        !checkBtn ||
-        !skipBtn ||
-        !feedbackText ||
-        !hintText ||
-        !answerForm ||
-        !totalText
-    ) {
+    const requiredElements = [
+        lessonSelect,
+        practiceMode,
+        progressFill,
+        progressText,
+        hanziText,
+        questionType,
+        userInput,
+        checkBtn,
+        skipBtn,
+        feedbackText,
+        hintText,
+        answerForm,
+        totalText
+    ];
+
+    if (requiredElements.some(element => !element)) {
         console.error(
-            "Chinese Master: ID trong index.html không khớp script.js."
+            "Chinese Master: Thiếu ID trong index.html. Hãy kiểm tra lại HTML."
         );
         return;
     }
@@ -436,8 +376,4 @@ function initChineseMaster() {
     selectLesson();
 }
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initChineseMaster);
-} else {
-    initChineseMaster();
-}
+initChineseMaster();
