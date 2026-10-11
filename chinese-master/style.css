@@ -454,3 +454,15 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
+#hanziText {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+    min-height: 60px;
+}
+
+.hanzi-card {
+    display: flex !important;
+    visibility: visible !important;
+}
