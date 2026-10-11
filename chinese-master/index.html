@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -14,7 +15,6 @@
       <p class="subtitle">Luyện tập Pinyin & Chữ Hán</p>
     </div>
 
-    <!-- Chọn bài học -->
     <div class="selector-box">
       <label for="lessonSelect">Chọn bài học:</label>
       <select id="lessonSelect">
@@ -37,44 +37,66 @@
       </select>
     </div>
 
-    <!-- Thanh tiến độ -->
+    <div class="selector-box">
+      <label for="practiceMode">Kiểu luyện tập:</label>
+      <select id="practiceMode">
+        <option value="hanzi">Hiện chữ Hán → nhập Pinyin</option>
+        <option value="meaning">Hiện nghĩa → nhập chữ Hán</option>
+        <option value="pinyin">Hiện Pinyin → nhập nghĩa</option>
+        <option value="random">Ngẫu nhiên cả 3 kiểu</option>
+      </select>
+    </div>
+
     <div class="progress-box">
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" id="progressFill"></div>
       </div>
-      <div class="progress-text" id="progressText">Đã học 0 / 0 từ</div>
+      <div class="progress-text" id="progressText">
+        Đã học 0 / 0 từ
+      </div>
     </div>
 
-    <!-- Khung hiển thị chữ Hán -->
     <div class="hanzi-card" id="hanziCard">
-      <span id="hanziText">你好</span>
+      <span id="hanziText">正在加载...</span>
     </div>
 
-    <!-- Ô nhập liệu & Nút bấm -->
+    <div id="questionType"
+         style="text-align:center; margin:12px 0; color:#94a3b8;">
+      Nhập câu trả lời của bạn
+    </div>
+
     <div class="input-group">
-      <input type="text" id="userInput" placeholder="Nhập Pinyin hoặc Chữ Hán..." autocomplete="off" />
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Nhập câu trả lời..."
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+      >
     </div>
 
     <div class="action-buttons">
-      <button id="checkBtn" class="btn btn-primary">✔ KIỂM TRA</button>
-      <button id="skipBtn" class="btn btn-secondary">Bỏ qua ➔</button>
+      <button id="checkBtn" class="btn btn-primary">
+        ✔ KIỂM TRA
+      </button>
+      <button id="skipBtn" class="btn btn-secondary">
+        Bỏ qua ➔
+      </button>
     </div>
 
-    <!-- Phản hồi kết quả & Gợi ý -->
     <div class="feedback-area">
       <div id="feedbackText" class="feedback"></div>
       <div id="hintText" class="hint"></div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
-      <span>Settings</span>
-      <span>Help</span>
-      <span>Stats</span>
-      <span>About</span>
+      <span>Chinese Master</span>
+      <span id="totalText">Tổng số từ: 0</span>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+```
