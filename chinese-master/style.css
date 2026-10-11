@@ -1,17 +1,20 @@
+
 :root {
     --bg-color: #0f172a;
     --card-bg: rgba(15, 23, 42, 0.92);
-    --input-bg: rgba(15, 23, 42, 0.95);
+    --input-bg: rgba(15, 23, 42, 0.96);
     --accent: #3b82f6;
     --accent-hover: #2563eb;
     --text: #f8fafc;
     --muted: #cbd5e1;
     --success: #10b981;
     --error: #ef4444;
-    --border: rgba(148, 163, 184, 0.28);
+    --border: rgba(148, 163, 184, 0.3);
 }
 
-/* Thiết lập chung */
+/* =========================
+   RESET
+========================= */
 * {
     box-sizing: border-box;
 }
@@ -21,28 +24,44 @@ html {
     background: var(--bg-color);
 }
 
-
 body {
+    position: relative;
+    isolation: isolate;
     margin: 0;
     min-height: 100vh;
     color: var(--text);
     font-family: Arial, "Microsoft YaHei", sans-serif;
-
-    background-color: #0f172a;
-    background-image:
-        linear-gradient(
-            rgba(15, 23, 42, 0.35),
-            rgba(15, 23, 42, 0.55)
-        ),
-        url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=85");
-
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: var(--bg-color);
 }
 
+/* =========================
+   BACKGROUND IMAGE
+   Ảnh nằm riêng phía sau nội dung
+========================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
 
+    background-color: #172554;
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.38),
+            rgba(15, 23, 42, 0.52)
+        ),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=85");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
 button,
 input,
 select {
@@ -53,15 +72,20 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Khung ứng dụng */
+/* =========================
+   APP CONTAINER
+========================= */
 .app {
     position: relative;
+    z-index: 1;
     width: min(100% - 32px, 720px);
     margin: 0 auto;
     padding: 32px 0;
 }
 
-/* Phần tiêu đề */
+/* =========================
+   HEADER
+========================= */
 .header {
     display: flex;
     align-items: center;
@@ -75,10 +99,13 @@ button {
     width: 54px;
     height: 54px;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
+
     background: linear-gradient(135deg, #60a5fa, #2563eb);
     box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+
     font-size: 30px;
     font-weight: bold;
 }
@@ -97,20 +124,24 @@ footer p {
     line-height: 1.6;
 }
 
-/* Các thẻ nội dung */
+/* =========================
+   CARDS
+========================= */
 .card {
-    background: var(--card-bg);
+    padding: 22px;
     border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 22px;
 
-    /* Tạo độ nổi cho thẻ nhưng không làm mờ ảnh nền */
+    background: var(--card-bg);
+
     box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.22),
+        0 12px 32px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Cài đặt bài học */
+/* =========================
+   SETTINGS
+========================= */
 .settings {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -130,21 +161,26 @@ footer p {
     font-size: 14px;
 }
 
-/* Ô chọn và ô nhập */
+/* =========================
+   INPUTS & SELECTS
+========================= */
 select,
 input {
     width: 100%;
     min-height: 48px;
     padding: 12px 14px;
+
     border: 1px solid var(--border);
     border-radius: 10px;
+
     background: var(--input-bg);
     color: var(--text);
+
     outline: none;
+
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+        box-shadow 0.2s ease;
 }
 
 select {
@@ -166,7 +202,13 @@ input::placeholder {
     color: #94a3b8;
 }
 
-/* Tiến độ học */
+#userInput {
+    font-size: 16px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
 .progress-section {
     margin-bottom: 24px;
 }
@@ -188,15 +230,17 @@ input::placeholder {
     height: 8px;
     overflow: hidden;
     border-radius: 99px;
-    background: rgba(148, 163, 184, 0.24);
+    background: rgba(148, 163, 184, 0.25);
 }
 
 .progress-fill {
     width: 0;
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, #60a5fa, #3b82f6);
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.45);
+
+    background: linear-gradient(90deg, #60a5fa, #2563eb);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+
     transition: width 0.25s ease;
 }
 
@@ -206,7 +250,9 @@ input::placeholder {
     font-size: 13px;
 }
 
-/* Thẻ câu hỏi */
+/* =========================
+   QUESTION CARD
+========================= */
 .question-card {
     padding: 26px;
 }
@@ -230,6 +276,7 @@ input::placeholder {
     height: 9px;
     flex-shrink: 0;
     border-radius: 50%;
+
     background: var(--success);
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
 }
@@ -245,24 +292,30 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+
     min-height: 150px;
+    padding: 12px 0;
+
     overflow-wrap: anywhere;
     text-align: center;
+
+    color: #fff;
     font-size: clamp(32px, 8vw, 58px);
     font-weight: bold;
     line-height: 1.4;
-    padding: 12px 0;
-    color: #ffffff;
+
     text-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
 }
 
 .hint {
     min-height: 20px;
     margin: 8px 0 24px;
+
     color: var(--muted);
     text-align: center;
     font-size: 14px;
     line-height: 1.6;
+
     overflow-wrap: anywhere;
 }
 
@@ -270,16 +323,16 @@ input::placeholder {
     color: var(--text);
 }
 
-#userInput {
-    font-size: 16px;
-}
-
-/* Thông báo đúng / sai */
+/* =========================
+   FEEDBACK
+========================= */
 .feedback {
     min-height: 22px;
     margin: 12px 0;
+
     font-size: 14px;
     line-height: 1.5;
+
     overflow-wrap: anywhere;
 }
 
@@ -293,7 +346,9 @@ input::placeholder {
     color: #fca5a5;
 }
 
-/* Các nút thao tác */
+/* =========================
+   BUTTONS
+========================= */
 .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -304,10 +359,13 @@ input::placeholder {
 .btn {
     min-height: 48px;
     padding: 12px 16px;
+
     border: 0;
     border-radius: 10px;
+
     cursor: pointer;
     font-weight: bold;
+
     transition:
         background 0.2s ease,
         opacity 0.2s ease,
@@ -326,7 +384,7 @@ input::placeholder {
 
 .primary {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
+    color: #fff;
     box-shadow: 0 5px 16px rgba(37, 99, 235, 0.22);
 }
 
@@ -337,15 +395,17 @@ input::placeholder {
 
 .secondary {
     border: 1px solid var(--border);
-    background: rgba(30, 41, 59, 0.85);
+    background: rgba(30, 41, 59, 0.92);
     color: var(--text);
 }
 
 .secondary:hover:not(:disabled) {
-    background: rgba(51, 65, 85, 0.95);
+    background: #334155;
 }
 
-/* Chân trang */
+/* =========================
+   FOOTER
+========================= */
 footer {
     padding: 24px 0 0;
     text-align: center;
@@ -355,21 +415,26 @@ footer p {
     color: #cbd5e1;
 }
 
-/* Hiệu ứng khi di chuột trên máy tính */
+/* =========================
+   DESKTOP HOVER
+========================= */
 @media (hover: hover) and (pointer: fine) {
     .card {
         transition: border-color 0.2s ease;
     }
 
     .card:hover {
-        border-color: rgba(96, 165, 250, 0.42);
+        border-color: rgba(96, 165, 250, 0.45);
     }
 }
 
-/* Giao diện điện thoại */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 520px) {
-    body {
+    body::before {
         background-attachment: scroll;
+        background-position: center center;
     }
 
     .app {
@@ -417,7 +482,9 @@ footer p {
     }
 }
 
-/* Hỗ trợ người dùng giảm hiệu ứng chuyển động */
+/* =========================
+   ACCESSIBILITY
+========================= */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
