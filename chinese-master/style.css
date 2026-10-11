@@ -1,27 +1,47 @@
-
 :root {
     --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --input-bg: #0f172a;
+    --card-bg: rgba(15, 23, 42, 0.92);
+    --input-bg: rgba(15, 23, 42, 0.95);
     --accent: #3b82f6;
     --accent-hover: #2563eb;
     --text: #f8fafc;
-    --muted: #94a3b8;
+    --muted: #cbd5e1;
     --success: #10b981;
     --error: #ef4444;
-    --border: #334155;
+    --border: rgba(148, 163, 184, 0.28);
 }
 
+/* Thiết lập chung */
 * {
     box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--bg-color);
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    background: var(--bg-color);
     color: var(--text);
     font-family: Arial, "Microsoft YaHei", sans-serif;
+
+    /* Ảnh nền trực tiếp bằng URL */
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.70),
+            rgba(23, 37, 84, 0.65),
+            rgba(15, 23, 42, 0.78)
+        ),
+        url("https://www.google.com/imgres?q=background%20%C4%91%E1%BA%B9p&imgurl=https%3A%2F%2Fimg.tripi.vn%2Fcdn-cgi%2Fimage%2Fwidth%3D700%2Cheight%3D700%2Fhttps%3A%2F%2Fimg6.thuthuatphanmem.vn%2Fuploads%2F2022%2F02%2F12%2Fbackground-3d-chat-lu_100423661.jpg&imgrefurl=https%3A%2F%2Ftripi.vn%2Fblog%2Fvi%2Fkhoa-hoc-ky-thuat%2Fkham-pha-bo-suu-tap-background-chat-luong-cao-nhung-hinh-nen-dep-nhat-duoc-tong-hop-tripi&docid=yO_V-ZAtxOlI0M&tbnid=WMNMObrd43RMUM&vet=12ahUKEwjny9OVkLGXAxX8R2wGHW4cGhgQnPAOegUImgIQAA..i&w=700&h=500&hcb=2&ved=2ahUKEwjny9OVkLGXAxX8R2wGHW4cGhgQnPAOegUImgIQAA");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 button,
@@ -30,12 +50,19 @@ select {
     font: inherit;
 }
 
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Khung ứng dụng */
 .app {
+    position: relative;
     width: min(100% - 32px, 720px);
     margin: 0 auto;
     padding: 32px 0;
 }
 
+/* Phần tiêu đề */
 .header {
     display: flex;
     align-items: center;
@@ -49,8 +76,10 @@ select {
     width: 54px;
     height: 54px;
     flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 16px;
-    background: var(--accent);
+    background: linear-gradient(135deg, #60a5fa, #2563eb);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
     font-size: 30px;
     font-weight: bold;
 }
@@ -58,22 +87,31 @@ select {
 .header h1 {
     margin: 0 0 5px;
     font-size: 27px;
+    letter-spacing: 0.3px;
 }
 
 .header p,
 footer p {
     margin: 0;
-    color: var(--muted);
+    color: #dbeafe;
     font-size: 14px;
+    line-height: 1.6;
 }
 
+/* Các thẻ nội dung */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 22px;
+
+    /* Tạo độ nổi cho thẻ nhưng không làm mờ ảnh nền */
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* Cài đặt bài học */
 .settings {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -93,6 +131,7 @@ footer p {
     font-size: 14px;
 }
 
+/* Ô chọn và ô nhập */
 select,
 input {
     width: 100%;
@@ -103,14 +142,32 @@ input {
     background: var(--input-bg);
     color: var(--text);
     outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #0f172a;
+    color: #f8fafc;
 }
 
 select:focus,
 input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgb(59 130 246 / 15%);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
+input::placeholder {
+    color: #94a3b8;
+}
+
+/* Tiến độ học */
 .progress-section {
     margin-bottom: 24px;
 }
@@ -132,14 +189,15 @@ input:focus {
     height: 8px;
     overflow: hidden;
     border-radius: 99px;
-    background: var(--border);
+    background: rgba(148, 163, 184, 0.24);
 }
 
 .progress-fill {
     width: 0;
     height: 100%;
     border-radius: inherit;
-    background: var(--accent);
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.45);
     transition: width 0.25s ease;
 }
 
@@ -149,6 +207,7 @@ input:focus {
     font-size: 13px;
 }
 
+/* Thẻ câu hỏi */
 .question-card {
     padding: 26px;
 }
@@ -157,10 +216,11 @@ input:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
 .question-label {
-    color: var(--muted);
+    color: #bfdbfe;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 1.5px;
@@ -169,8 +229,10 @@ input:focus {
 .status-dot {
     width: 9px;
     height: 9px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--success);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.55);
 }
 
 .question-type {
@@ -191,6 +253,8 @@ input:focus {
     font-weight: bold;
     line-height: 1.4;
     padding: 12px 0;
+    color: #ffffff;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
 }
 
 .hint {
@@ -211,6 +275,7 @@ input:focus {
     font-size: 16px;
 }
 
+/* Thông báo đúng / sai */
 .feedback {
     min-height: 22px;
     margin: 12px 0;
@@ -226,9 +291,10 @@ input:focus {
 
 .feedback.wrong,
 .hint.wrong {
-    color: var(--error);
+    color: #fca5a5;
 }
 
+/* Các nút thao tác */
 .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -243,7 +309,15 @@ input:focus {
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.2s, opacity 0.2s;
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.98);
 }
 
 .btn:disabled {
@@ -252,37 +326,77 @@ input:focus {
 }
 
 .primary {
-    background: var(--accent);
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
+    box-shadow: 0 5px 16px rgba(37, 99, 235, 0.22);
 }
 
 .primary:hover:not(:disabled) {
-    background: var(--accent-hover);
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    box-shadow: 0 7px 20px rgba(37, 99, 235, 0.32);
 }
 
 .secondary {
     border: 1px solid var(--border);
-    background: transparent;
+    background: rgba(30, 41, 59, 0.85);
     color: var(--text);
 }
 
 .secondary:hover:not(:disabled) {
-    background: #334155;
+    background: rgba(51, 65, 85, 0.95);
 }
 
+/* Chân trang */
 footer {
     padding: 24px 0 0;
     text-align: center;
 }
 
+footer p {
+    color: #cbd5e1;
+}
+
+/* Hiệu ứng khi di chuột trên máy tính */
+@media (hover: hover) and (pointer: fine) {
+    .card {
+        transition: border-color 0.2s ease;
+    }
+
+    .card:hover {
+        border-color: rgba(96, 165, 250, 0.42);
+    }
+}
+
+/* Giao diện điện thoại */
 @media (max-width: 520px) {
+    body {
+        background-attachment: scroll;
+    }
+
     .app {
         width: min(100% - 22px, 720px);
         padding: 22px 0;
     }
 
+    .header {
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-size: 26px;
+    }
+
     .header h1 {
         font-size: 23px;
+    }
+
+    .header p,
+    footer p {
+        font-size: 13px;
     }
 
     .settings {
@@ -301,5 +415,16 @@ footer {
 
     .buttons {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Hỗ trợ người dùng giảm hiệu ứng chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }
