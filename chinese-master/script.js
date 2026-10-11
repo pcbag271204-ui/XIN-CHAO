@@ -281,12 +281,15 @@ function shuffle(array) {
 }
 
 // Chọn bài học
+
 function selectLesson(choice) {
   if (choice === "all") {
     vocabulary = [...fullVocabulary];
   } else {
-    const lessonNum = parseInt(choice, 10);
-    vocabulary = fullVocabulary.filter((item) => item.lesson === lessonNum);
+    // Hỗ trợ cả bài số và bài có tên như H2-1
+    vocabulary = fullVocabulary.filter(
+      (item) => String(item.lesson).trim() === String(choice).trim()
+    );
   }
 
   shuffle(vocabulary);
@@ -294,13 +297,14 @@ function selectLesson(choice) {
   wordsLearned = 0;
   totalWords = vocabulary.length;
 
-  userInput.disabled = false;
-  checkBtn.disabled = false;
-  skipBtn.disabled = false;
+  userInput.disabled = totalWords === 0;
+  checkBtn.disabled = totalWords === 0;
+  skipBtn.disabled = totalWords === 0;
 
   updateProgress();
   loadNextWord();
 }
+
 
 // Tải từ tiếp theo
 function loadNextWord() {
