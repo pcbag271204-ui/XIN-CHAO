@@ -484,57 +484,81 @@ function getCorrectAnswer(word) {
 // ========================================
 
 
-function checkAnswer() {
-    const input = document.getElementById("userInput");
-    const feedback = document.querySelector(".feedback");
 
-    if (!input || !feedback) return;
+function checkAnswer(event) {
+    // Ngăn form tải lại trang khi nhấn Enter
+    if (event) event.preventDefault();
 
-    const userAnswer = input.value.trim();
+    if (isAnswered || currentIndex >= vocabulary.length) {
+        return;
+    }
 
-    // Lấy từ vựng đang được hỏi
-    const word = currentWord;
+    const word = vocabulary[currentIndex];
+    const userAnswer = userInput.value.trim();
+    const correctAnswer = getCorrectAnswer(word);
 
-    // Xác định đáp án đúng theo chiều luyện tập
-    const correctAnswer =
-        questionMode === "chinese"
-            ? (word.chinese || word.hanzi)
-            : (word.meaning || word.vietnamese);
-
-    const normalize = value =>
-        String(value || "").trim().toLowerCase();
-
-    // Chưa nhập câu trả lời
+    // Chưa nhập đáp án
     if (!userAnswer) {
-        feedback.className = "feedback wrong";
-        feedback.textContent =
-            `Đáp án đúng: ${correctAnswer}. Hãy nhập lại đáp án để tiếp tục.`;
-        input.focus();
+        setFeedback("Bro chưa nhập đáp án!", "wrong");
+        userInput.focus();
         return;
     }
 
-    // Trả lời đúng
-    if (normalize(userAnswer) === normalize(correctAnswer)) {
-        feedback.className = "feedback correct";
-        feedback.textContent = "Chính xác! ✓";
+    let isCorrect = false;
 
-        // Chỉ chuyển sang từ tiếp theo khi đáp án đúng
-        setTimeout(() => {
-            nextWord();
-        }, 500);
+    // Chế độ 1: Chữ Hán -> Pinyin
+    if (currentMode === "hanzi") {
+        isCorrect =
+            normalizePinyin(userAnswer) ===
+            normalizePinyin(word.pinyin);
+    }
 
+    // Chế độ 2: Nghĩa tiếng Việt -> Chữ Hán
+    else if (currentMode === "meaning") {
+        isCorrect =
+            normalizeText(userAnswer) ===
+            normalizeText(word.hanzi);
+    }
+
+    // Chế độ 3: Pinyin -> Nghĩa tiếng Việt
+    else if (currentMode === "pinyin") {
+        const acceptedMeanings = getMeaningOptions(word.meaning);
+
+        isCorrect = acceptedMeanings.includes(
+            normalizeText(userAnswer)
+        );
+    }
+
+    // Trả lời sai: giữ nguyên câu hỏi
+    if (!isCorrect) {
+        setFeedback(
+            `Chưa đúng! Đáp án đúng là: ${correctAnswer}. Hãy nhập lại đáp án đúng để tiếp tục.`,
+            "wrong"
+        );
+
+        userInput.value = "";
+        userInput.focus();
         return;
     }
 
-    // Trả lời sai: hiện đáp án, giữ nguyên từ hiện tại
-    feedback.className = "feedback wrong";
-    feedback.textContent =
-        `Sai rồi! Đáp án đúng là: ${correctAnswer}. Hãy nhập lại để tiếp tục.`;
+    // Trả lời đúng: chỉ ghi nhận một lần
+    isAnswered = true;
+    correctCount++;
+    currentIndex++;
 
-    // Xóa câu trả lời sai để người học nhập lại
-    input.value = "";
-    input.focus();
+    setFeedback("Chính xác! ✓", "correct");
+    setHint("Đã ghi nhận câu trả lời đúng!");
+
+    // Khóa nút để tránh ghi nhận nhiều lần
+    setControlsDisabled(true);
+    updateProgress();
+
+    // Chuyển từ mới sau khi trả lời đúng
+    nextTimer = setTimeout(() => {
+        loadNextWord();
+    }, 700);
 }
+
 
 
 // ========================================
