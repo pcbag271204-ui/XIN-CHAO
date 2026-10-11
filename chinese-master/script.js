@@ -483,10 +483,7 @@ function getCorrectAnswer(word) {
 // 10. KIỂM TRA ĐÁP ÁN
 // ========================================
 
-
-
 function checkAnswer(event) {
-    // Ngăn form tải lại trang khi nhấn Enter
     if (event) event.preventDefault();
 
     if (isAnswered || currentIndex >= vocabulary.length) {
@@ -495,32 +492,42 @@ function checkAnswer(event) {
 
     const word = vocabulary[currentIndex];
     const userAnswer = userInput.value.trim();
-    const correctAnswer = getCorrectAnswer(word);
+
+    // Luôn hiển thị đầy đủ 3 trạng thái
+    const showFullAnswer = () => {
+        setHint(
+            `Chữ Hán: ${word.hanzi} | Pinyin: ${word.pinyin} | Nghĩa: ${word.meaning}`
+        );
+    };
 
     // Chưa nhập đáp án
     if (!userAnswer) {
-        setFeedback("Bro chưa nhập đáp án!", "wrong");
+        showFullAnswer();
+        setFeedback(
+            "Bạn chưa nhập đáp án. Hãy nhập đáp án đúng để tiếp tục.",
+            "wrong"
+        );
         userInput.focus();
         return;
     }
 
     let isCorrect = false;
 
-    // Chế độ 1: Chữ Hán -> Pinyin
+    // Chế độ chữ Hán -> Pinyin
     if (currentMode === "hanzi") {
         isCorrect =
             normalizePinyin(userAnswer) ===
             normalizePinyin(word.pinyin);
     }
 
-    // Chế độ 2: Nghĩa tiếng Việt -> Chữ Hán
+    // Chế độ nghĩa tiếng Việt -> chữ Hán
     else if (currentMode === "meaning") {
         isCorrect =
             normalizeText(userAnswer) ===
             normalizeText(word.hanzi);
     }
 
-    // Chế độ 3: Pinyin -> Nghĩa tiếng Việt
+    // Chế độ Pinyin -> nghĩa tiếng Việt
     else if (currentMode === "pinyin") {
         const acceptedMeanings = getMeaningOptions(word.meaning);
 
@@ -529,10 +536,13 @@ function checkAnswer(event) {
         );
     }
 
-    // Trả lời sai: giữ nguyên câu hỏi
+    // Luôn hiển thị đáp án đầy đủ sau khi kiểm tra
+    showFullAnswer();
+
+    // Nhập sai: giữ nguyên câu hỏi, không tăng tiến độ
     if (!isCorrect) {
         setFeedback(
-            `Chưa đúng! Đáp án đúng là: ${correctAnswer}. Hãy nhập lại đáp án đúng để tiếp tục.`,
+            "Chưa chính xác! Xem đáp án và nhập lại để tiếp tục.",
             "wrong"
         );
 
@@ -541,24 +551,19 @@ function checkAnswer(event) {
         return;
     }
 
-    // Trả lời đúng: chỉ ghi nhận một lần
+    // Nhập đúng: tăng tiến độ và chuyển câu
     isAnswered = true;
     correctCount++;
     currentIndex++;
 
     setFeedback("Chính xác! ✓", "correct");
-    setHint("Đã ghi nhận câu trả lời đúng!");
-
-    // Khóa nút để tránh ghi nhận nhiều lần
     setControlsDisabled(true);
     updateProgress();
 
-    // Chuyển từ mới sau khi trả lời đúng
     nextTimer = setTimeout(() => {
         loadNextWord();
-    }, 700);
+    }, 1500);
 }
-
 
 
 // ========================================
