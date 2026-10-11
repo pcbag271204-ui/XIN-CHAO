@@ -483,52 +483,59 @@ function getCorrectAnswer(word) {
 // 10. KIỂM TRA ĐÁP ÁN
 // ========================================
 
-function checkAnswer(event) {
-    event.preventDefault();
 
-    if (isAnswered || currentIndex >= vocabulary.length) {
+function checkAnswer() {
+    const input = document.getElementById("userInput");
+    const feedback = document.querySelector(".feedback");
+
+    if (!input || !feedback) return;
+
+    const userAnswer = input.value.trim();
+
+    // Lấy từ vựng đang được hỏi
+    const word = currentWord;
+
+    // Xác định đáp án đúng theo chiều luyện tập
+    const correctAnswer =
+        questionMode === "chinese"
+            ? (word.chinese || word.hanzi)
+            : (word.meaning || word.vietnamese);
+
+    const normalize = value =>
+        String(value || "").trim().toLowerCase();
+
+    // Chưa nhập câu trả lời
+    if (!userAnswer) {
+        feedback.className = "feedback wrong";
+        feedback.textContent =
+            `Đáp án đúng: ${correctAnswer}. Hãy nhập lại đáp án để tiếp tục.`;
+        input.focus();
         return;
     }
 
-    const answer = userInput.value.trim();
+    // Trả lời đúng
+    if (normalize(userAnswer) === normalize(correctAnswer)) {
+        feedback.className = "feedback correct";
+        feedback.textContent = "Chính xác! ✓";
 
-    if (!answer) {
-        setFeedback("Bạn hãy nhập câu trả lời!", "wrong");
+        // Chỉ chuyển sang từ tiếp theo khi đáp án đúng
+        setTimeout(() => {
+            nextWord();
+        }, 500);
+
         return;
     }
 
-    const word = vocabulary[currentIndex];
-    let correct = false;
+    // Trả lời sai: hiện đáp án, giữ nguyên từ hiện tại
+    feedback.className = "feedback wrong";
+    feedback.textContent =
+        `Sai rồi! Đáp án đúng là: ${correctAnswer}. Hãy nhập lại để tiếp tục.`;
 
-    if (currentMode === "hanzi") {
-        correct = normalizePinyin(answer) === normalizePinyin(word.pinyin);
-    } else if (currentMode === "meaning") {
-        correct = normalizeText(answer) === normalizeText(word.hanzi);
-    } else {
-        correct = getMeaningOptions(word.meaning).includes(normalizeText(answer));
-    }
-
-    if (correct) {
-        isAnswered = true;
-        correctCount++;
-        currentIndex++;
-
-        setFeedback("✔ Chính xác! Giỏi lắm!", "correct");
-        setHint(
-            `${word.hanzi} | ${word.pinyin} | ${word.meaning}`,
-            "correct"
-        );
-
-        setControlsDisabled(true);
-        updateProgress();
-
-        nextTimer = setTimeout(loadNextWord, 1000);
-    } else {
-        setFeedback("✘ Chưa đúng, thử lại nhé!", "wrong");
-        setHint("Bạn có thể nhập lại đáp án.", "wrong");
-        userInput.select();
-    }
+    // Xóa câu trả lời sai để người học nhập lại
+    input.value = "";
+    input.focus();
 }
+
 
 // ========================================
 // 11. BỎ QUA
