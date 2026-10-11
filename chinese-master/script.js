@@ -15,7 +15,7 @@ Trong index.html, tải file theo thứ tự:
 */
 
 // Kiểm tra dữ liệu từ vựng
-const wordsData = window.fullVocabulary  [
+const fullVocabulary = [
    // Bài 1
         {lessin: 1, hanzi: "你", pinyin: "nǐ", meaning: "bạn, anh, chị..."},
         {lesson: 1, hanzi: "好", pinyin: "hǎo", meaning: "khỏe, tốt, hay..."},
