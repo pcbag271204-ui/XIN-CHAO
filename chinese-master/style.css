@@ -21,28 +21,27 @@ html {
     background: var(--bg-color);
 }
 
+
 body {
     margin: 0;
     min-height: 100vh;
     color: var(--text);
     font-family: Arial, "Microsoft YaHei", sans-serif;
 
-    /* Ảnh nền trực tiếp bằng URL */
-    background-color: var(--bg-color);
+    background-color: #0f172a;
     background-image:
         linear-gradient(
-            135deg,
-            rgba(15, 23, 42, 0.70),
-            rgba(23, 37, 84, 0.65),
-            rgba(15, 23, 42, 0.78)
+            rgba(15, 23, 42, 0.35),
+            rgba(15, 23, 42, 0.55)
         ),
-        url("https://www.google.com/imgres?q=background%20%C4%91%E1%BA%B9p&imgurl=https%3A%2F%2Fimg.tripi.vn%2Fcdn-cgi%2Fimage%2Fwidth%3D700%2Cheight%3D700%2Fhttps%3A%2F%2Fimg6.thuthuatphanmem.vn%2Fuploads%2F2022%2F02%2F12%2Fbackground-3d-chat-lu_100423661.jpg&imgrefurl=https%3A%2F%2Ftripi.vn%2Fblog%2Fvi%2Fkhoa-hoc-ky-thuat%2Fkham-pha-bo-suu-tap-background-chat-luong-cao-nhung-hinh-nen-dep-nhat-duoc-tong-hop-tripi&docid=yO_V-ZAtxOlI0M&tbnid=WMNMObrd43RMUM&vet=12ahUKEwjny9OVkLGXAxX8R2wGHW4cGhgQnPAOegUImgIQAA..i&w=700&h=500&hcb=2&ved=2ahUKEwjny9OVkLGXAxX8R2wGHW4cGhgQnPAOegUImgIQAA");
+        url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=85");
 
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
 
 button,
 input,
